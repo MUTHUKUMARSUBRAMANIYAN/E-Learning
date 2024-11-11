@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; 
 import { Router } from '@angular/router';
+import { ApiService } from '../../shared/api.service';
 
 @Component({
   selector: 'app-course-details',
@@ -375,9 +376,10 @@ export class CourseDetailsComponent {
     course.showEnroll = false;
     this.showOverlay(course);  // Show overlay after successful enrollment
   }  
-  constructor(private router: Router) { }
+  constructor(private router: Router, private service: ApiService) { }
 
   goToCourse() {
+    this.service.updateSelectedCourse(this.selectedCourse);
     this.router.navigate(['/course-view']);
   }
 
